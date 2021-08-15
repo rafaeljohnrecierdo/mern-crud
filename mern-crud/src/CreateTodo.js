@@ -1,6 +1,4 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 import { TodoForm } from "./TodoForm";
 
 export const CreateTodo = () => {
@@ -12,7 +10,7 @@ export const CreateTodo = () => {
     <div className="container">
       <div className="mt-3">
         <h3>Create Todo Item</h3>
-        <TodoForm todo={todo} onSubmit={onSubmit}/>
+        <TodoForm onSubmit={onSubmit}/>
           </div>
         </div>
  );
