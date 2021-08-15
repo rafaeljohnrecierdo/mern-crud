@@ -1,12 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom"
 
 export const CreateTodo = () => {
   const {register, handleSubmit} = useForm()
 
   const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data))
-  })
+    alert(JSON.stringify(data));
+  });
 
     return(
     <div className="container">
@@ -15,7 +16,7 @@ export const CreateTodo = () => {
         <form onSubmit ={onSubmit}>
           <div className="form-group">
             <label htmlFor="text">Text:</label>
-            <input className="form-control" ref={register} type="text" name ="text" id="text" />
+            <input className="form-control" ref={register('email', { required: true })} type="text" name ="text" id="text" />
           </div>
 
           <div className="form-group">
