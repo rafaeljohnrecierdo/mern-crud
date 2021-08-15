@@ -1,41 +1,29 @@
-import React, {useState, useEffect} from 'react'
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom"
+import React, {useState, useEffect} from "react";
+import { TodoForm } from "./TodoForm"
+
 
 export const EditTodo = () => {
   const [todo, setTodo] = useState();
-  const {register, handleSubmit} = useForm({ defaultValues: { text: todo ? todo.text : "" }, });
-  const history = useHistory();
 
-  useEffect(() => {  
+  useEffect(() => {
     setTodo({
       text: "foo"
     })
   }, [])
 
+const onSubmit = (data) => {
+  alert(JSON.stringify(data))
+}
 
-
-  const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data));
-    history.push("/")
-  });
-
-    return(
-    <div className="container">
-      <div className="mt-3">
-        <h3>Edit Todo Item</h3>
-        <form onSubmit ={onSubmit}>
-          <div className="form-group">
-            <label htmlFor="text">Text:</label>
-            <input className="form-control" ref={register('email', { required: true })} type="text" name ="text" id="text" />
-          </div>
-
-          <div className="form-group">
-            <button type="submit" className="btn btn-primary">Create Todo</button>
-          </div>
-
-        </form>
-      </div>
-    </div>
+return todo ? (
+<div className="container">
+  <div className="mt-3">
+    <h3>Edit Todo Item</h3>
+<TodoForm todo={todo} onSubmit={onSubmit}/>
+  </div>
+</div>
+)
+ : (
+   <div>Loading...</div>
  );
-};
+}
