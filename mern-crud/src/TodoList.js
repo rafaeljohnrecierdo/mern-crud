@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 export const TodoList = () => {
-    const [items, setItems] = useState()
+    const [items, setItems] = useState([])
 
     useEffect(() => {
         setItems([
@@ -27,7 +27,7 @@ export const TodoList = () => {
         </thead>
         <tbody>
           {
-              items.map(todo => (
+               items.map(todo => (
                   <tr key={todo.id}>
                     <td>
                       {todo.text}
@@ -36,9 +36,9 @@ export const TodoList = () => {
                       <Link to={'/edit/${todo.id}'}>Edit</Link>
                     </td>
 
-                  </tr>
+                  </tr>)
+                  )
 
-              ))
           }
         </tbody>
       </table>
