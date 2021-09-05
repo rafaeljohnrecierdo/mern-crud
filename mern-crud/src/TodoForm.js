@@ -1,32 +1,43 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom"
+import { useForm } from 'react-hook-form';
 
 export const TodoForm = ({ todo, onSubmit }) => {
-  const {register, handleSubmit} = useForm({ defaultValues: { text: todo ? todo.text : "" }, });
-  const history = useHistory();
-
-
-
-
-
-  const submitHandler = handleSubmit((data) => {
-    onSubmit(data)
-    history.push("/");
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      text: todo ? todo.text : '',
+      description: todo ? todo.description : '',
+    },
   });
 
-    return(
-        <form onSubmit ={submitHandler}>
-          <div className="form-group">
-            <label htmlFor="text">Text:</label>
-            <input className="form-control" ref={register('text', { required: true })} type="text" name ="text" id="text" />
-          </div>
+  const submitHandler = handleSubmit((data) => {
+    onSubmit(data);
+  });
 
-          <div className="form-group">
-            <button type="submit" className="btn btn-primary">Save Todo</button>
-          </div>
-
-        </form>
-
+  return (
+    <form onSubmit={submitHandler}>
+      <div className="form-group">
+        <label htmlFor="text">Text:</label>
+        <input
+          className="form-control"
+          {...register('text', { required: true })}
+          type="text"
+          name="text"
+          id="text"
+        />
+        <label htmlFor="description">Description:</label>
+        <input
+          className="form-control"
+          {...register('description', { required: true })}
+          type="text"
+          name="description"
+          id="description"
+        />
+      </div>
+      <div className="form-group mt-2">
+        <button className="btn btn-primary" type="submit">
+          Save Todo
+        </button>
+      </div>
+    </form>
   );
-  };
+};
